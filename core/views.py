@@ -49,5 +49,3 @@ def download_file(request, code):
     zipf.close()
 
     return FileResponse(open(zip_path, 'rb'), as_attachment=True)
-
-hello
