@@ -1,24 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload - SuperShare</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}"
+    <meta charset="UTF-8">
+    <title>Upload – SuperShare</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
-<div class="logo">SuperShare</div>
-
-<div class="card">
-    <h2>Upload Your Files</h2>
-
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="files" multiple required>
-        <br>
-        <button type="submit">Generate Code</button>
-    </form>
+<div class="bg-animation">
+    <div class="neural-network"></div>
+    <div class="particles"></div>
 </div>
 
+<section class="hero">
+    <div class="hero-content">
+        <h1>Upload Files</h1>
+        <p>Generate a secure one-time code</p>
+
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-content">
+                    <div class="plus">+</div>
+                    <p>Drag & Drop files here</p>
+                    <span>or click to browse</span>
+                </div>
+                <input type="file" name="files" id="fileInput" multiple hidden required>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Generate Code</button>
+        </form>
+
+
+    </div>
+</section>
+<script src="{% static 'js/upload.js' %}"></script>
 </body>
 </html>

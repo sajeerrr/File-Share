@@ -3,48 +3,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperShare</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
-
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
-    <!-- Background Animation -->
-    <div class="bg-animation">
-        <div class="neural-network" id="neuralNetwork"></div>
-        <div class="particles" id="particles"></div>
+
+<!-- Background Animation -->
+<div class="bg-animation">
+    <div class="neural-network"></div>
+    <div class="particles"></div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>SuperShare</h1>
+        <p>Fast. Secure. Temporary.</p>
+
+        <div class="cta-buttons">
+            <a href="/upload/" class="btn btn-primary">Upload Files</a>
+            <a href="/receive/" class="btn btn-secondary">Receive Files</a>
+        </div>
+
+        <p style="margin-top: 25px; font-size: 0.9rem; color: var(--gray);">
+            Files auto-delete after download or 5 minutes.
+        </p>
     </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Super Share</h1>
-            <p>Share. Secure. Vanish.</p>
-            <div class="cta-buttons">
-                <a href="/upload/" class="btn btn-primary">Upload</a>
-                <a href="/receive/" class="btn btn-secondary">Receive</a>
-            </div>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <h2>Super Share</h2>
-            <p>November 14-16, 2026 • Bangkok Convention Center</p>
-            <!-- set the event date in the JavaScript file / line number 32 -->
-            <div class="social-links">
-                <a href="https://x.com/minthu" class="social-link" rel="nofollow noopener" target="_blank">T</a>
-                <a href="#" class="social-link">L</a>
-                <a href="#" class="social-link">F</a>
-                <a href="#" class="social-link">I</a>
-            </div>
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <h2>SuperShare</h2>
 
-            <p>
-                © 2026 Chain Summit Conference. All rights reserved. 
-                | Designed by <a href="" rel="nofollow noopener" target="_blank">Sajeer</a>
-            </p>
+        <div class="social-links">
+            <a href="#" class="social-link">T</a>
+            <a href="#" class="social-link">L</a>
+            <a href="#" class="social-link">F</a>
+            <a href="#" class="social-link">I</a>
         </div>
-    </footer>
+
+        <p>
+            © 2026 SuperShare. All rights reserved.
+            | Designed by <a href="#">Sajeer</a>
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>

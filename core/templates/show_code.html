@@ -1,23 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Your Code - SuperShare</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <meta charset="UTF-8">
+    <title>Your Code – SuperShare</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
-<div class="logo">SuperShare</div>
-
-<div class="card">
-    <h2>Your Share Code</h2>
-
-    <div class="code-box">{{ code }}</div>
-
-    <p>This code expires in 5 minutes.</p>
-
-    <a href="/"><button>Home</button></a>
+<div class="bg-animation">
+    <div class="neural-network"></div>
+    <div class="particles"></div>
 </div>
 
+<section class="hero">
+    <div class="hero-content">
+        <h1>Your Code</h1>
+        <p>Share this with your receiver</p>
+
+        <div class="code-box">{{ code }}</div>
+
+        <p id="timer" class="timer">Expires in 05:00</p>
+
+        <div class="progress-container">
+            <div id="progress" class="progress-bar"></div>
+        </div>
+
+        <a href="/" class="btn btn-secondary">Home</a>
+    </div>
+</section>
+
+<script src="{% static 'js/show_code.js' %}"></script>
 </body>
 </html>

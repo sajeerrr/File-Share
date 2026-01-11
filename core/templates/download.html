@@ -1,23 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Download - SuperShare</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <meta charset="UTF-8">
+    <title>Download – SuperShare</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
-<div class="logo">SuperShare</div>
-
-<div class="card">
-    <h2>Your Files Are Ready</h2>
-
-    <a href="/download/{{ code }}/">
-        <button>Download Now</button>
-    </a>
-
-    <p style="margin-top:15px;">⚠ Files will be deleted after download</p>
+<div class="bg-animation">
+    <div class="neural-network"></div>
+    <div class="particles"></div>
 </div>
 
+<section class="hero">
+    <div class="hero-content">
+        <h1>Ready to Download</h1>
+        <p class="warning-text">⚠ One-time access only</p>
+
+        <a href="/download/{{ code }}/" class="btn btn-primary" onclick="warnUser()">
+            Download Now
+        </a>
+
+        <p class="download-note">
+            Files auto-delete after download.
+        </p>
+    </div>
+</section>
+
+<script src="{% static 'js/download.js' %}"></script>
 </body>
 </html>
