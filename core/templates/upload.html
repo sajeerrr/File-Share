@@ -16,26 +16,32 @@
 <section class="hero">
     <div class="hero-content">
         <h1>Upload Files</h1>
-        <p>Generate a secure one-time code</p>
+        <p>Select or drag your files</p>
 
         <form method="POST" enctype="multipart/form-data" id="uploadForm">
-        {% csrf_token %}
+            {% csrf_token %}
 
             <div class="drop-zone" id="dropZone">
-                <div class="drop-content">
+                <div class="drop-content" id="dropContent">
                     <div class="plus">+</div>
-                    <p>Drag & Drop files here</p>
+                    <p>Drag & Drop files</p>
                     <span>or click to browse</span>
                 </div>
+
+                <ul class="file-list" id="fileList"></ul>
+
                 <input type="file" name="files" id="fileInput" multiple hidden required>
+            </div>
+
+            <div class="progress-container hidden" id="uploadProgressContainer">
+                <div class="progress-bar" id="uploadProgress"></div>
             </div>
 
             <button class="btn btn-primary" type="submit">Generate Code</button>
         </form>
-
-
     </div>
 </section>
+
 <script src="{% static 'js/upload.js' %}"></script>
 </body>
 </html>

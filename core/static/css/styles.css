@@ -297,3 +297,130 @@ footer p a:hover {
     font-size: 0.85rem;
     color: var(--gray);
 }
+/* Drop Zone Enhanced */
+.drop-zone {
+    width: 320px;
+    min-height: 200px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 25px auto;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drop-zone:hover {
+    background: rgba(0, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+.drop-zone.dragover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--secondary);
+}
+
+.drop-content {
+    text-align: center;
+    color: var(--gray);
+}
+
+.drop-content .plus {
+    font-size: 3.5rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.file-list li {
+    font-size: 0.9rem;
+    color: var(--light);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+    animation: fadeInUp 0.3s ease;
+}
+
+/* Drag & Drop Upload Box */
+.drop-zone {
+    width: 320px;
+    min-height: 200px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 25px auto;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drop-zone:hover {
+    background: rgba(0, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+.drop-zone.dragover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--secondary);
+}
+
+.drop-content {
+    text-align: center;
+    color: var(--gray);
+}
+
+.drop-content .plus {
+    font-size: 3.5rem;
+    color: var(--primary);
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.file-list li {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 250px;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, cyan, magenta);
+    transition: width 0.2s ease;
+}
+
+.hidden {
+    display: none;
+}
