@@ -1,12 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Code</title>
+    <title>Your Code - SuperShare</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 <body>
-    <h2>Your Code is:</h2>
-    <h1>{{ code }}</h1>
-    <p>Share this code with your friend</p>
-    <a href="/">Go Home</a>
+
+<div class="logo">SuperShare</div>
+
+<div class="card">
+    <h2>Your Share Code</h2>
+
+    <div class="code-box">{{ code }}</div>
+
+    <p>This code expires in 5 minutes.</p>
+
+    <a href="/"><button>Home</button></a>
+</div>
+
 </body>
 </html>

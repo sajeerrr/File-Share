@@ -1,12 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Download</title>
+    <title>Download - SuperShare</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 <body>
-    <h2>Files Ready</h2>
+
+<div class="logo">SuperShare</div>
+
+<div class="card">
+    <h2>Your Files Are Ready</h2>
+
     <a href="/download/{{ code }}/">
-        <button>Download</button>
+        <button>Download Now</button>
     </a>
+
+    <p style="margin-top:15px;">⚠ Files will be deleted after download</p>
+</div>
+
 </body>
 </html>
