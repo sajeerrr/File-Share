@@ -17,7 +17,7 @@
 
         <form method="POST" enctype="multipart/form-data" id="uploadForm">
             {% csrf_token %}
-
+            <p id="uploadError" class="error-msg" style="display:none;"></p>
             <div class="drop-zone" id="dropZone">
                 <div class="drop-content" id="dropContent">
                     <div class="plus">+</div>

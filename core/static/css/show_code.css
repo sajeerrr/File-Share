@@ -60,6 +60,7 @@ body {
     border: 2px dashed var(--primary);
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
     animation: glow 2s infinite alternate;
+    color: cyan;
 }
 
 /* Timer */

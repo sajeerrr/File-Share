@@ -129,12 +129,14 @@ input[type="text"] {
 /* Show Code Page */
 .code-box {
     font-size: 3rem;
-    letter-spacing: 6px;
+    letter-spacing: 8px;
     margin: 20px 0;
-    padding: 20px 30px;
+    padding: 20px 35px;
+    border-radius: 20px;
     border: 2px dashed var(--primary);
-    border-radius: 15px;
-    display: inline-block;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    animation: glow 2s infinite alternate;
+    color: var(--primary);
 }
 
 .timer {
