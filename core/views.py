@@ -3,6 +3,8 @@ from django.http import FileResponse
 from .models import SharedFile
 import random, string, zipfile, os
 from django.conf import settings
+import threading
+import time
 
 def generate_unique_code():
     while True:
@@ -15,7 +17,11 @@ def home(request):
 
 def upload_file(request):
     if request.method == "POST":
-        files = request.FILES.getlist('files')
+        files = request.FILES.getlist("files")
+
+        if not files:
+            return render(request, "upload.html", {"error": "No files uploaded"})
+
         code = generate_unique_code()
 
         for f in files:
@@ -24,6 +30,7 @@ def upload_file(request):
         return render(request, "show_code.html", {"code": code})
 
     return render(request, "upload.html")
+
 
 def receive_file(request):
     if request.method == "POST":
@@ -41,6 +48,14 @@ def receive_file(request):
 
     return render(request, "receive.html")
 
+
+def delete_file_later(path, delay=5):
+    time.sleep(delay)
+    try:
+        os.remove(path)
+    except:
+        pass
+
 def download_file(request, code):
     files = SharedFile.objects.filter(code=code)
 
@@ -52,20 +67,25 @@ def download_file(request, code):
         return render(request, "receive.html", {"error": "Code expired"})
 
     # Single file
-    if len(files) == 1:
-        file_path = files[0].file.path
-        response = FileResponse(open(file_path, 'rb'), as_attachment=True)
-        files.delete()  # deletes DB + disk
+    if files.count() == 1:
+        f = files.first()
+        response = FileResponse(open(f.file.path, "rb"), as_attachment=True)
+        files.delete()
         return response
 
-    # Multiple → zip
+    # Multiple → ZIP
     zip_path = os.path.join(settings.MEDIA_ROOT, f"{code}.zip")
-    with zipfile.ZipFile(zip_path, 'w') as zipf:
+
+    with zipfile.ZipFile(zip_path, "w") as zipf:
         for f in files:
             zipf.write(f.file.path, os.path.basename(f.file.path))
 
-    response = FileResponse(open(zip_path, 'rb'), as_attachment=True)
+    response = FileResponse(open(zip_path, "rb"), as_attachment=True)
 
-    files.delete()  # delete originals
+    # Delete DB + originals
+    files.delete()
+
+    # Delete ZIP AFTER download starts
+    threading.Thread(target=delete_file_later, args=(zip_path,)).start()
 
     return response
