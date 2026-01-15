@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Receive – SuperShare</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/receive.css' %}">
 </head>
 <body>
 
@@ -24,13 +24,29 @@
 
         <form method="POST">
             {% csrf_token %}
-            <input type="text" name="code" maxlength="5" required
-                   style="padding:12px 20px; border-radius:30px; border:none; margin:20px 0; width:220px;">
-            <br>
+
+            
+                <div class="code-drop-content">
+
+                    <input 
+                        type="text"
+                        name="code"
+                        maxlength="5"
+                        required
+                        class="code-input"
+                        placeholder="• • • • •"
+                        inputmode="numeric"
+                        autocomplete="off"
+                    />
+
+                </div>
+            
+
             <button class="btn btn-primary" type="submit">Get Files</button>
         </form>
+
     </div>
 </section>
-
+<script src="{% static 'js/receive.js' %}"></script>
 </body>
 </html>
