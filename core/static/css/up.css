@@ -200,56 +200,34 @@ footer p a:hover {
     color: var(--secondary);
 }
 
-/* Footer Social Buttons */
+/* Social Icons */
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 1.5rem;
+    margin: 2rem 0;
     flex-wrap: wrap;
 }
 
-/* Themed Small Buttons */
-.social-btn {
+.social-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    font-size: 14px;
+    gap: 12px;
+    padding: 14px 26px;
+    font-size: 18px;
     font-weight: 600;
-    border-radius: 999px;
+    border-radius: 40px;
     text-decoration: none;
-    color: var(--light);
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid transparent;
-    background-image: linear-gradient(var(--dark), var(--dark)),
-                      linear-gradient(45deg, var(--primary), var(--accent));
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+    color: #000;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    box-shadow: 0 0 15px rgba(0,255,255,0.3);
 }
 
-/* Hover */
-.social-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(0,255,255,0.6);
+.social-link:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 25px rgba(0,255,255,0.6);
 }
-
-/* Icon size */
-.social-btn i {
-    font-size: 14px;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-    .social-btn {
-        font-size: 13px;
-        padding: 9px 16px;
-    }
-}
-
-
 
 /* Animations */
 @keyframes fadeInUp {
@@ -279,6 +257,174 @@ footer p a:hover {
     }
 }
 
+/* Drag & Drop Upload Box */
+.drop-zone {
+    width: 320px;
+    height: 200px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 25px auto;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.drop-zone:hover {
+    background: rgba(0, 255, 255, 0.05);
+    transform: scale(1.03);
+}
+
+.drop-zone.dragover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--secondary);
+}
+
+.drop-content {
+    text-align: center;
+    color: var(--gray);
+}
+
+.drop-content .plus {
+    font-size: 3.5rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.drop-content p {
+    font-size: 1rem;
+    margin: 8px 0;
+}
+
+.drop-content span {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+/* Drop Zone Enhanced */
+.drop-zone {
+    width: 320px;
+    min-height: 200px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 25px auto;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drop-zone:hover {
+    background: rgba(0, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+.drop-zone.dragover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--secondary);
+}
+
+.drop-content {
+    text-align: center;
+    color: var(--gray);
+}
+
+.drop-content .plus {
+    font-size: 3.5rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.file-list li {
+    font-size: 0.9rem;
+    color: var(--light);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+    animation: fadeInUp 0.3s ease;
+}
+
+/* Drag & Drop Upload Box */
+.drop-zone {
+    width: 320px;
+    min-height: 200px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 25px auto;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drop-zone:hover {
+    background: rgba(0, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+.drop-zone.dragover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--secondary);
+}
+
+.drop-content {
+    text-align: center;
+    color: var(--gray);
+}
+
+.drop-content .plus {
+    font-size: 3.5rem;
+    color: var(--primary);
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.file-list li {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 250px;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, cyan, magenta);
+    transition: width 0.2s ease;
+}
 
 .hidden {
     display: none;
