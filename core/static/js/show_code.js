@@ -4,6 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const timerEl = document.getElementById("timer");
     const progressEl = document.getElementById("progress");
 
+    const qrBtn = document.getElementById("qrBtn");
+    const backBtn = document.getElementById("backBtn");
+    const homeBtn = document.getElementById("homeBtn");
+
+    const codeBox = document.getElementById("codeBox");
+    const qrBox = document.getElementById("qrBox");
+    const qrCanvas = document.getElementById("qrCanvas");
+    const codeText = document.getElementById("codeText").innerText;
+
+    // TIMER
     const interval = setInterval(() => {
         totalSeconds--;
 
@@ -22,4 +32,32 @@ document.addEventListener("DOMContentLoaded", function () {
             progressEl.style.width = "0%";
         }
     }, 1000);
+
+    // QR BUTTON
+    qrBtn.addEventListener("click", () => {
+        codeBox.classList.add("hidden");
+        qrBox.classList.remove("hidden");
+
+        qrBtn.classList.add("hidden");
+        homeBtn.classList.add("hidden");
+        backBtn.classList.remove("hidden");
+
+        QRCode.toCanvas(qrCanvas, codeText, {
+            width: 200,
+            color: {
+                dark: "#00ffff",
+                light: "#000000"
+            }
+        });
+    });
+
+    // BACK BUTTON
+    backBtn.addEventListener("click", () => {
+        qrBox.classList.add("hidden");
+        codeBox.classList.remove("hidden");
+
+        backBtn.classList.add("hidden");
+        qrBtn.classList.remove("hidden");
+        homeBtn.classList.remove("hidden");
+    });
 });
