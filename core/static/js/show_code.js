@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const codeBox = document.getElementById("codeBox");
     const qrBox = document.getElementById("qrBox");
     const qrCanvas = document.getElementById("qrCanvas");
-    const codeText = document.getElementById("codeText").innerText;
+
+    const codeText = document.getElementById("codeText").innerText.trim();
+
+    const baseURL = getBaseURL();
+    const downloadUrl = `${baseURL}/download/${codeText}/`;
 
     // TIMER
     const interval = setInterval(() => {
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         homeBtn.classList.add("hidden");
         backBtn.classList.remove("hidden");
 
-        QRCode.toCanvas(qrCanvas, codeText, {
+        QRCode.toCanvas(qrCanvas, downloadUrl, {
             width: 200,
             color: {
                 dark: "#00ffff",
@@ -61,3 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
         homeBtn.classList.remove("hidden");
     });
 });
+
+function getBaseURL() {
+    const { protocol, hostname, port } = window.location;
+    return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+}

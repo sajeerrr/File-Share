@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pf5_p@2))&mt87i@^^bc*_hkf&+@3=*mathnp*sw4tng0z_s@3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -126,3 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CRONJOBS = [
+    ('*/1 * * * *', 'core.cleanup.delete_expired_files'),  # every minute
+]

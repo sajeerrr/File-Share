@@ -12,8 +12,10 @@ def generate_unique_code():
         if not SharedFile.objects.filter(code=code).exists():
             return code
 
+
 def home(request):
     return render(request, "home.html")
+
 
 def upload_file(request):
     if request.method == "POST":
@@ -52,9 +54,11 @@ def receive_file(request):
 def delete_file_later(path, delay=5):
     time.sleep(delay)
     try:
-        os.remove(path)
+        if os.path.exists(path):
+            os.remove(path)
     except:
         pass
+
 
 def download_file(request, code):
     files = SharedFile.objects.filter(code=code)
@@ -70,7 +74,7 @@ def download_file(request, code):
     if files.count() == 1:
         f = files.first()
         response = FileResponse(open(f.file.path, "rb"), as_attachment=True)
-        files.delete()
+        files.delete()  # deletes DB + disk
         return response
 
     # Multiple → ZIP
@@ -82,10 +86,9 @@ def download_file(request, code):
 
     response = FileResponse(open(zip_path, "rb"), as_attachment=True)
 
-    # Delete DB + originals
-    files.delete()
+    files.delete()  # delete originals
 
-    # Delete ZIP AFTER download starts
+    # delete zip later
     threading.Thread(target=delete_file_later, args=(zip_path,)).start()
 
     return response
