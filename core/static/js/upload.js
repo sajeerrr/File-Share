@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropContent = document.getElementById("dropContent");
     const form = document.getElementById("uploadForm");
     const errorMsg = document.getElementById("uploadError");
+    const loader = document.getElementById("loader");
+    const progressText = document.getElementById("progressText");
+    const submitBtn = document.getElementById("submitBtn");
 
     let filesArray = [];
 
-    dropZone.onclick = () => {
-        fileInput.click();
-        errorMsg.style.display = "none";
-    };
+    dropZone.onclick = () => fileInput.click();
 
     dropZone.ondragover = e => {
         e.preventDefault();
@@ -24,13 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         dropZone.classList.remove("dragover");
         addFiles(e.dataTransfer.files);
-        errorMsg.style.display = "none";
     };
 
     fileInput.onchange = () => {
         addFiles(fileInput.files);
         fileInput.value = "";
-        errorMsg.style.display = "none";
     };
 
     function truncate(name) {
@@ -40,9 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function addFiles(newFiles) {
-        Array.from(newFiles).forEach(file => {
-            filesArray.push(file);
-        });
+        Array.from(newFiles).forEach(file => filesArray.push(file));
         renderFiles();
     }
 
@@ -75,26 +71,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelectorAll(".remove-btn").forEach(btn => {
             btn.onclick = function (e) {
-                e.stopPropagation(); // 🔥 STOP opening file window
+                e.stopPropagation();
                 const index = this.getAttribute("data-index");
                 filesArray.splice(index, 1);
                 renderFiles();
             };
         });
-
     }
 
     form.onsubmit = e => {
+        e.preventDefault();
+
         if (filesArray.length === 0) {
-            e.preventDefault();
             errorMsg.innerText = "First upload a file";
             errorMsg.style.display = "block";
             return;
         }
 
-        // Put filesArray back into input before submit
-        const dataTransfer = new DataTransfer();
-        filesArray.forEach(file => dataTransfer.items.add(file));
-        fileInput.files = dataTransfer.files;
+        errorMsg.style.display = "none";
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Uploading...";
+        loader.style.display = "flex";
+
+        const formData = new FormData(form);
+        filesArray.forEach(file => formData.append("files", file));
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action, true);
+
+        xhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                progressText.innerText = percent + "%";
+            }
+        };
+
+        xhr.onload = function () {
+            if (xhr.status === 200 || xhr.status === 302) {
+                document.body.innerHTML = xhr.responseText;
+            }
+        };
+
+        xhr.send(formData);
     };
 });
